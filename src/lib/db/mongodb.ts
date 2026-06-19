@@ -31,7 +31,6 @@ export async function connectDB() {
   }
 
   cached.conn = await cached.promise;
-  console.log("Cached Conn:",cached.conn,cached.promise);
 
   return cached.conn;
 }
