@@ -21,7 +21,7 @@ const categorySchema = new Schema(
   },
   {
     _id: false,
-  }
+  },
 );
 
 const reportSchema = new Schema(
@@ -34,7 +34,6 @@ const reportSchema = new Schema(
 
     repositoryName: {
       type: String,
-      required: true,
       trim: true,
     },
 
@@ -42,23 +41,36 @@ const reportSchema = new Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+    },
+
+    primaryLanguage: {
+      type: String,
+    },
+
+    stars: {
+      type: Number,
+  },
 
     sourceType: {
       type: String,
       enum: ["github", "zip"],
       required: true,
     },
-
+    status: {
+      type: String,
+      enum: ["pending", "processing", "completed", "failed"],
+      default: "pending",
+    },
     overallScore: {
       type: Number,
-      required: true,
       min: 0,
       max: 100,
     },
 
     repositoryHealthScore: {
       type: Number,
-      required: true,
       min: 0,
       max: 100,
     },
@@ -75,8 +87,7 @@ const reportSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-export const Report =
-  models.Report || model("Report", reportSchema);
+export const Report = models.Report || model("Report", reportSchema);
